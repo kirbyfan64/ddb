@@ -11,7 +11,7 @@ with open('requirements.txt') as fp:
 setup(
     name='ddb',
     version='0.1',
-    description='Build deb packages via Docker containers',
+    description='A lightweight tool for building .deb packages via Docker containers',
     long_description=readme,
     author='Ryan Gonzalez',
     author_email='rymg19@gmail.com',
