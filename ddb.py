@@ -1,6 +1,5 @@
 #!/usr/bin/env python36
 
-
 from termcolor import colored
 from pathlib import Path
 
@@ -30,7 +29,6 @@ class BuildContext:
 
         self.client = docker.from_env()
 
-
     def get_image(self):
         for image in self.client.images.list():
             if (image.labels.get(IMAGE_DIST_LABEL) == self.dist and
@@ -38,7 +36,6 @@ class BuildContext:
                 return image
 
         return None
-
 
     def build_image(self):
         dockerfile = f'''
@@ -77,7 +74,6 @@ class BuildContext:
 
         assert False
 
-
     @contextlib.contextmanager
     def temporary_container(self, image, command, volumes, environment):
         container = self.client.containers.run(image, command, detach=True, remove=True,
@@ -93,7 +89,6 @@ class BuildContext:
                 if ('Conflict' not in ex.response.reason and
                     'Not Found' not in ex.response.reason):
                     raise
-
 
     def run(self, image):
         print(note('Creating temporary container...'))
@@ -135,7 +130,6 @@ class BuildContext:
 
 class DDB:
     commands = 'build', 'clean'
-
 
     def build(self, dist: 'The distribution to use', outdir: 'The output directory',
               depdir: ('The deb dependency directory', 'option'),
@@ -179,7 +173,6 @@ class DDB:
 
         ctx.run(image)
 
-
     def clean(self):
         '''Removes old images created by ddb.'''
         client = docker.from_env()
@@ -205,5 +198,5 @@ def main():
         plac.call(DDB())
     except SystemExit as ex:
         # XXX: hack
-        if ex.code is None and not '-h' in sys.argv and not '--help' in sys.argv:
+        if ex.code is None and '-h' not in sys.argv and '--help' not in sys.argv:
             sys.exit('A command is required!')
