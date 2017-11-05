@@ -200,3 +200,7 @@ def main():
         # XXX: hack
         if ex.code is None and '-h' not in sys.argv and '--help' not in sys.argv:
             sys.exit('A command is required!')
+
+
+if __name__ == '__main__':
+    main()

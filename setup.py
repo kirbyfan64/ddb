@@ -22,9 +22,6 @@ setup(
         'console_scripts': ['ddb = ddb:main']
     },
     install_requires=requirements,
-    package_data={
-        '': ['README.rst', 'requirements.txt'],
-    },
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Topic :: System :: Archiving :: Packaging',

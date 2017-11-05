@@ -1,2 +1,4 @@
 ddb.egg-info/
 __pycache__/
+dist/
+.pip/
