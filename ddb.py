@@ -6,6 +6,9 @@ from pathlib import Path
 import contextlib, docker, io, os, plac, sys, tarfile
 
 
+__version__ = '0.1'
+
+
 IMAGE_DIST_LABEL = 'ddb-image-dist'
 IMAGE_VER_LABEL = 'ddb-version'
 DDB_VER = '0'
@@ -129,7 +132,7 @@ class BuildContext:
 
 
 class DDB:
-    commands = 'build', 'clean'
+    commands = 'build', 'clean', 'version'
 
     def build(self, dist: 'The distribution to use', outdir: 'The output directory',
               depdir: ('The deb dependency directory', 'option'),
@@ -191,6 +194,9 @@ class DDB:
             print(note('Success!'))
         else:
             print(note('No images to clean were found.'))
+
+    def version(self):
+        print(__version__)
 
 
 def main():
